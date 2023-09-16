@@ -25,8 +25,12 @@ export default function handler(req, res) {
         .then(
             (data) => {
                 res.status(200).json({
-                    detected: data.choices[0].message.content.split(":")[0].trim(),
-                    answer: data.choices[0].message.content.split(":")[1].trim(),
+                    detected: data.choices[0].message.content
+                        .split(":")[0]
+                        .trim(),
+                    answer: data.choices[0].message.content
+                        .split(":")[1]
+                        .trim(),
                 });
             },
             (error) => {

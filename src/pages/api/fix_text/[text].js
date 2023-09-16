@@ -16,7 +16,7 @@ export default function handler(req, res) {
                 {
                     role: "system",
                     content:
-                        "Only fix the texts errors, do not expand or add information that was not already present."
+                        "Only fix the texts errors, do not expand or add information that was not already present.",
                 },
                 { role: "user", content: text },
             ],
