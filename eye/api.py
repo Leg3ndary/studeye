@@ -13,6 +13,7 @@
 import math
 
 import cv2
+import json
 import numpy as np
 
 GAZE_DEPTH = 0.6
@@ -20,20 +21,17 @@ GAZE_DEPTH = 0.6
 class GazeProjector:
 
     def __init__(self, config_file):
-        '''Load the camera configs from a file'''
-        cv_file = cv2.FileStorage(config_file, cv2.FILE_STORAGE_READ)
-        if not cv_file.isOpened():
-            raise Exception(f'Unable to open camera configuration file {config_file}')
+        '''Load the camera configs from a JSON file'''
+        with open(config_file, 'r') as json_file:
+            config_data = json.load(json_file)
 
-        self._camera_mtx = cv_file.getNode('mtx').mat()
-        self._camera_dist = cv_file.getNode('dist').mat()
-        self._height = cv_file.getNode('resolution').mat()[1][0]
-        self._width = cv_file.getNode('resolution').mat()[0][0]
-
-        self._trans = self._compute_transformation_matrix(
-            (0.0683000000000028, 0.0163349459352645, 0.00282292669066985),
+        self._camera_mtx = np.array(config_data['mtx'])
+        self._camera_dist = np.array(config_data['dist'])
+        self._height, self._width = config_data['resolution']['data']
+        
+        self._trans = self._compute_transformation_matrix((0.0683000000000028, 0.0163349459352645, 0.00282292669066985),
             (-12.000000000000043, 0.0, 0.0))
-        self._invtrans = np.linalg.inv(self.trans)
+        self._invtrans = np.linalg.inv(self._trans)
 
     def project_gaze(self, xvec, yvec, zvec, _vergence):
         ''' Handle the new gaze samples '''
@@ -91,7 +89,7 @@ class GazeProjector:
                         trans_z],
                         [0., 0., 0., 1.]])
     
-gaze_proj = GazeProjector('./config.yaml')
-...
+gaze_proj = GazeProjector('config.json')
+
 def _gaze_handler(x, y, z, vergence):
     gaze_in_image = gaze_proj.project_gaze(x, y, z, vergence)
