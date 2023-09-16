@@ -1,4 +1,5 @@
 import pygame
+import read_data
 
 pygame.init()
 SCREEN_WIDTH = 1000
@@ -12,6 +13,8 @@ circles = [(border, border), (SCREEN_WIDTH/2, border), (SCREEN_WIDTH-border, bor
             (border, SCREEN_HEIGHT/2), (SCREEN_WIDTH/2, SCREEN_HEIGHT/2), (SCREEN_WIDTH-border, SCREEN_HEIGHT/2), 
            (border, SCREEN_HEIGHT-border), (SCREEN_WIDTH/2, SCREEN_HEIGHT-border), (SCREEN_WIDTH-border, SCREEN_HEIGHT-border)]
 experimental = [0] * 9
+
+frontend = read_data.FrontendData()
 
 # Run until the user asks to quit
 running = True
@@ -37,7 +40,8 @@ while running:
                 print(mouse[0], val[0])
                 if abs(mouse[0] - val[0]) <= radius*2 and abs(mouse[1] - val[1]) <= radius*2:
                     circles[i] = (0, 0)
-                    #FUNCTION HERE!!!, store to experimental[i]
+                    xvec, yvec, zvec, vergence = read_data.pos
+                    
         
 
         if ev.type == pygame.QUIT:

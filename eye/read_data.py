@@ -70,6 +70,7 @@ def main():
     global pos
     ''' App entrypoint '''
     frontend = FrontendData()
+    frontend.
     try:
         while True:
             time.sleep(1)
