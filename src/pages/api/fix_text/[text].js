@@ -11,12 +11,12 @@ export default function handler(req, res) {
                 {
                     role: "system",
                     content:
-                        "You will reply in 4 sentences at most, though the more concise the better.",
+                        "You will fix the text provided, if there are no issues, reply with the original text.",
                 },
                 {
                     role: "system",
                     content:
-                        "Given text that an individual is looking at, you will return what word or concept they would most likely want defined. Reply with only one prompt followed by a colon and the definition with proper punctuation.",
+                        "Only fix the texts errors, do not expand or add information that was not already present."
                 },
                 { role: "user", content: text },
             ],
@@ -25,8 +25,7 @@ export default function handler(req, res) {
         .then(
             (data) => {
                 res.status(200).json({
-                    detected: data.choices[0].message.content.split(":")[0],
-                    answer: data.choices[0].message.content.split(":")[1],
+                    fixed: data.choices[0].message.content.trim(),
                 });
             },
             (error) => {
