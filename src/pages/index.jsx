@@ -14,7 +14,7 @@ export default function Home() {
                 return part;
             } else {
                 return (
-                    <span key={index} className="font-black drop-shadow-glow">
+                    <span key={index} className="font-black drop-shadow-glow6">
                         {part}
                     </span>
                 );
@@ -31,16 +31,19 @@ export default function Home() {
         <main
             className={`flex min-h-screen flex-col items-center justify-between ${ubuntu.className}`}
         >
-            <h1 className="p-8 text-6xl font-bold text-center drop-shadow-glow">
+            <h1 className="p-8 text-6xl font-bold text-center animate-glow">
                 Studeye
             </h1>
             <div className="w-[950px] bg-htn">
                 
-                <div className="w-full h-screen p-4 text-3xl text-white">
+                <div className="w-full min-h-screen p-4 text-3xl text-white">
                     {formatText(notes)}
                 </div>
+            <h1 className="p-8 text-6xl font-bold text-center animate-glow">
+                Studeye
+            </h1>
                 <textarea
-                    className="w-full h-screen grid-cols-2 gap-24 p-4 text-3xl text-white bg-inherit"
+                    className="w-full min-h-screen grid-cols-2 gap-24 p-4 text-3xl text-white bg-inherit"
                     value={notes}
                     onChange={handleContentChange}
                 />

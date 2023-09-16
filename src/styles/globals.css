@@ -19,3 +19,32 @@ body {
     color: var(--text-color);
     background: var(--background);
 }
+
+::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+@keyframes glow {
+    0%, 100% {
+        filter: drop-shadow(0 0px 20px #2EFFFF) drop-shadow(0 0px 65px #2EFFFF);
+    }
+    16.67% {
+        filter: drop-shadow(0 0px 20px #FF0000) drop-shadow(0 0px 65px #FF0000);
+    }
+    33.33% {
+        filter: drop-shadow(0 0px 20px #FFFF00) drop-shadow(0 0px 65px #FFFF00);
+    }
+    50% {
+        filter: drop-shadow(0 0px 20px #FFA500) drop-shadow(0 0px 65px #FFA500);
+    }
+    66.67% {
+        filter: drop-shadow(0 0px 20px #008000) drop-shadow(0 0px 65px #008000);
+    }
+    83.33% {
+        filter: drop-shadow(0 0px 20px #800080) drop-shadow(0 0px 65px #800080);
+    }
+}
