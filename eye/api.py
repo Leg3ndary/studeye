@@ -93,3 +93,6 @@ gaze_proj = GazeProjector('config.json')
 
 def _gaze_handler(x, y, z, vergence):
     gaze_in_image = gaze_proj.project_gaze(x, y, z, vergence)
+
+
+print(GazeProjector.project_gaze(400, 300, 80, 0, None))
