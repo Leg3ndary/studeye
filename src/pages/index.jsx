@@ -4,7 +4,7 @@ import { useState } from "react";
 const ubuntu = Ubuntu({ subsets: ["latin"], weight: ["400", "700"] });
 
 export default function Home() {
-    const [notes, setNotes] = useState("Your **notes** will go *here*!\nYour voila");
+    const [notes, setNotes] = useState("Your **notes** will go *here*!");
 
     function formatText(text) {
         const boldRegex = /\*\*(.*?)\*\*/g;
