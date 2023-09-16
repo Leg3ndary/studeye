@@ -18,6 +18,11 @@ export default function handler(req, res) {
                     content:
                         "Given text that an individual is looking at, you will return what word or concept they would most likely want defined. Reply with only one prompt followed by a colon and the definition with proper punctuation.",
                 },
+                {
+                    role: "system",
+                    content:
+                        "In your response you may include the special symbols ** to enclose a word indicating that it is important and a keyword for the concept. For example, if the word is 'dog', you may respond with 'A **dog** is a furry animal that barks.'",
+                },
                 { role: "user", content: text },
             ],
             model: "gpt-3.5-turbo",

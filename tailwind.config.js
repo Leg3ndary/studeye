@@ -13,8 +13,14 @@ module.exports = {
                     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
             },
             colors: {
-                "htn": "#201c2c",
-            }
+                htn: "#201c2c",
+            },
+            dropShadow: {
+                glow: [
+                    "0 0px 20px #2EFFFF",
+                    "0 0px 65px #8AFFFF",
+                ],
+            },
         },
     },
     plugins: [],
