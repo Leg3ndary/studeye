@@ -7,8 +7,8 @@ export default function Home() {
         <main
             className={`flex min-h-screen flex-col items-center justify-between p-24 ${ubuntu.className}`}
         >
-            <div className="w-[800px] border-2">
-                <h1 className="p-4 text-6xl text-center">Htn title thing</h1>
+            <div className="w-[800px] bg-border-2 bg-htn border-white absolute">
+                <h1 className="p-4 text-6xl text-center">Studeye</h1>
             </div>
         </main>
     );
