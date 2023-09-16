@@ -16,7 +16,8 @@ running = True
 
 while running:
     xvec, yvec, zvec, vergence = read_data.pos
-    pygame.draw.circle(screen, (255, 0, 0), (int(abs(100*xvec)), 300-int(abs(100*yvec))), radius)
+    if xvec:
+        pygame.draw.circle(screen, (255, 0, 0), (int(abs(100*xvec)), 300-int(abs(100*yvec))), radius)
     # time.sleep(5)
 
     pygame.display.flip()
