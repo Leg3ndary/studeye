@@ -79,6 +79,8 @@ def main():
                 print(f'Gaze={xvec:.2f},y={yvec:.2f},z={zvec:.2f},vergence={vergence:.2f}')
                 while keyboard.is_pressed('r'):
                     pass
+            # xvec, yvec, zvec, vergence = pos
+            # print(f'Gaze={xvec:.2f},y={yvec:.2f},z={zvec:.2f},vergence={vergence:.2f}')
     except (KeyboardInterrupt, SystemExit):
         frontend.shutdown()
 

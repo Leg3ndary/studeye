@@ -1,14 +1,16 @@
 import pygame
 import read_data
+import better_data
 
 def redraw(screen, circles, radius):
-     screen.fill((255, 255, 255))
+    screen.fill((255, 255, 255))
 
-     for i in circles:
+    for i in circles:
         if i != (0,0):
             pygame.draw.circle(screen, (255, 0, 0), i, radius)
 
 def calibrate():
+    frontend = read_data.FrontendData()
 
     pygame.init()
     SCREEN_WIDTH = 1000
@@ -24,16 +26,15 @@ def calibrate():
     references = circles[:]
     experimental = []
     translations = []
+    trans = []
     scales = []
-
-    frontend = read_data.FrontendData()
 
     # Run until the user asks to quit
     #running = True
 
     count = 0
-    running = True
-    while running:
+    
+    while True:
 
         #gets mouse [x, y]
         mouse = pygame.mouse.get_pos()
@@ -49,16 +50,18 @@ def calibrate():
                         
                         xvec, yvec, zvec, vergence = read_data.pos
                         #experimental[i] = (xvec, yvec, zvec, vergence)
-                        if i % 2 == 0:
-                            translations.append((references[i][0]-xvec, references[i][1]-yvec, 60-zvec))
+                        if i == 4: #middle one, must be first
+                            trans = (xvec-references[i][0], yvec-references[i][1], zvec-60)
                         else:
-                            scales.append((references[i][0]/xvec, references[i][1]/yvec, 60/zvec))
+
+                            scales.append(((trans[0]+references[i][0])/xvec, (trans[1]+references[i][1])/yvec, 1))
 
                         count += 1
                         
                         if count == 9:
-                            num_tuples = len(translations)
-                            final_trans = tuple(sum(x) / num_tuples for x in zip(*translations))
+                            #num_tuples = len(translations)
+                            #final_trans = tuple(sum(x) / num_tuples for x in zip(*translations))
+                            final_trans = trans
 
                             num_tuples = len(scales)
                             final_scales = tuple(sum(x) / num_tuples for x in zip(*scales))
@@ -76,4 +79,3 @@ def calibrate():
 # Done! Time to quit.
 
 print(calibrate())
-
