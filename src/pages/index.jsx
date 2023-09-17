@@ -4,22 +4,42 @@ import { useState } from "react";
 const ubuntu = Ubuntu({ subsets: ["latin"], weight: ["400", "700"] });
 
 export default function Home() {
-    const [notes, setNotes] = useState("Your **notes** will go **here**!");
+    const [notes, setNotes] = useState("Your **notes** will go *here*!");
 
     function formatText(text) {
-        const regex = /\*\*(.*?)\*\*/g;
+        const boldRegex = /\*\*(.*?)\*\*/g;
+        const italicRegex = /\*(.*?)\*/g;
+        const newlineRegex = /(\r\n|\n|\r)/g;
 
-        return text.split(regex).map((part, index) => {
-            if (index % 2 === 0) {
-                return part;
-            } else {
+        return text
+            .split(newlineRegex)
+            .map((line, lineIndex) => {
                 return (
-                    <span key={index} className="font-black drop-shadow-glow6">
-                        {part}
-                    </span>
+                    <div key={lineIndex}>
+                        {line.split(boldRegex).map((part, index) => {
+                            if (index % 2 === 0) {
+                                return part.split(italicRegex).map((subpart, subIndex) => {
+                                    if (subIndex % 2 === 0) {
+                                        return subpart;
+                                    } else {
+                                        return (
+                                            <span key={subIndex} className="italic animate-glow">
+                                                {subpart}
+                                            </span>
+                                        );
+                                    }
+                                });
+                            } else {
+                                return (
+                                    <span key={index} className={`font-black animate-glow`}>
+                                        {part}
+                                    </span>
+                                );
+                            }
+                        })}
+                    </div>
                 );
-            }
-        });
+            });
     }
 
     const handleContentChange = (e) => {
@@ -31,19 +51,16 @@ export default function Home() {
         <main
             className={`flex min-h-screen flex-col items-center justify-between ${ubuntu.className}`}
         >
+            <title>Studeye</title>
             <h1 className="p-8 text-6xl font-bold text-center animate-glow">
                 Studeye
             </h1>
             <div className="w-[950px] bg-htn">
-                
                 <div className="w-full min-h-screen p-4 text-3xl text-white">
                     {formatText(notes)}
                 </div>
-            <h1 className="p-8 text-6xl font-bold text-center animate-glow">
-                Studeye
-            </h1>
                 <textarea
-                    className="w-full min-h-screen grid-cols-2 gap-24 p-4 text-3xl text-white bg-inherit"
+                    className="w-full min-h-screen grid-cols-2 gap-24 p-4 text-3xl text-white bg-[#1a1a1a] rounded-3xl"
                     value={notes}
                     onChange={handleContentChange}
                 />

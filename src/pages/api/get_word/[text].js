@@ -23,6 +23,11 @@ export default function handler(req, res) {
                     content:
                         "In your response you may include the special symbols ** to enclose a word indicating that it is important and a keyword for the concept. For example, if the word is 'dog', you may respond with 'A **dog** is a furry animal that barks.'",
                 },
+                {
+                    role: "system",
+                    content:
+                        "In your response you may also include the special symbols * to enclose a word indicating that it is another important word for the concept. For example, if the word is 'dog', you may respond with 'A **dog** is a furry *animal* that barks.'",
+                },
                 { role: "user", content: text },
             ],
             model: "gpt-3.5-turbo",
