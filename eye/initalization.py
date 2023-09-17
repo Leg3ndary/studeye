@@ -1,6 +1,5 @@
 import pygame
 import read_data
-import better_data
 
 def redraw(screen, circles, radius):
     screen.fill((255, 255, 255))
