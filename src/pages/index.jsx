@@ -51,10 +51,10 @@ export default function Home() {
         <main
             className={`flex min-h-screen flex-col items-center justify-between ${ubuntu.className}`}
         >
+            <title>Studeye</title>
             <h1 className="p-8 text-6xl font-bold text-center animate-glow">
                 Studeye
             </h1>
-            <title>Studeye</title>
             <div className="w-[950px] bg-htn">
                 <div className="w-full min-h-screen p-4 text-3xl text-white">
                     {formatText(notes)}
