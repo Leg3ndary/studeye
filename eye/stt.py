@@ -12,6 +12,3 @@ def get_text(point: int) -> str:
     text = pytesseract.pytesseract.image_to_string(img)
 
     return text
-
-result = get_text(1)
-print(result)
