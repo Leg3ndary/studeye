@@ -1,10 +1,11 @@
 import time
 
 import pygame
-import read_data
+# import read_data
+import another_data
 
 clock = pygame.time.Clock()
-frontend = read_data.FrontendData()
+frontend = another_data.FrontendData()
 
 
 def redraw(screen, circles, radius):
@@ -58,14 +59,14 @@ def calibrate():
                     if (
                         abs(mouse[0] - val[0]) <= radius * 2
                         and abs(mouse[1] - val[1]) <= radius * 2
-                        and read_data.pos is not None
+                        # and read_data.pos is not None
                     ):
                         print(mouse[0], val[0])
                         print(circles[i])
                         circles[i] = (0, 0)
 
-                        xvec, yvec, zvec, vergence = read_data.pos
-                        experimental[i] = (xvec, yvec, zvec, vergence)
+                        xvec, yvec, zvec, vergence = frontend.pos or (0, 0, 0, 0)
+                        # experimental[i] = (xvec, yvec, zvec, vergence)
                         if i == 4:  # middle one, must be first
                             trans = (
                                 xvec - references[i][0],
@@ -101,7 +102,7 @@ def calibrate():
 
         redraw(screen, circles, radius)
         pygame.display.flip()
-        clock.tick(30)
+        # clock.tick(60)
 
 
 # Done! Time to quit.
