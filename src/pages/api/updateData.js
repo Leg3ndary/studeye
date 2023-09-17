@@ -3,7 +3,6 @@
 export default function handler(req, res) {
     fetch("http://127.0.0.1:5000")
         .then((response) => response.json())
-        .then((data) => console.log(data));
-
-    res.status(200).json({ name: "John Doe" });
+        .then((data) => res.status(200).json({ text: data }))
+        .error((error) => res.status(400).json({ error: "Failed fetching data: " + error }));
 }
